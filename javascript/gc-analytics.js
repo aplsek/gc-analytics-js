@@ -7,7 +7,6 @@ $(document).ready(
 			function pln(str) {
 				console.log(str);
 			}
-			pln("hello");
 
 			function addToMap(map, type, x, y) {
 				if (map[type] == undefined) {
@@ -22,12 +21,9 @@ $(document).ready(
 			}
 
 			function trimQuote(str) {
-				pln("trim " + str);
 				if (str === undefined) {
-					pln("    err trim: " + str);
 					return "";
 				}
-				
 				return str.replace(/"/g,'');
 			}
 			
@@ -327,7 +323,6 @@ $(document).ready(
 				mytable += "</tr></tbody></table>";
 				//document.write(mytable);
 				$('#summary-table').html(mytable);
-				pln("hi");
 			});
 			
 			$.get('input/table-gctype.txt', function(data) {
@@ -338,6 +333,7 @@ $(document).ready(
 						"				<td><b> Time [s]</b></td> <td><b> Avg [s]</b></td>" +
 						"<td><b>Max [s]</b></td></tr></tr> </tr>" +  + "</tr>";
 				$.each(lines, function(lineNo, line) {
+					line = trimQuote(line);
 					var items = line.split(',');
 					if (lineNo == 0) {
 					} else {
@@ -351,7 +347,6 @@ $(document).ready(
 				mytable += "</tr></tbody></table>";
 				//document.write(mytable);
 				$('#summary-gc-type-table').html(mytable);
-				pln("hi2");
 			});
 			
 			$.get('input/data_csv2.txt', function(data) {
@@ -364,13 +359,16 @@ $(document).ready(
 				var mapSurvivor = {};
 				
 				initCharts(charts);
-				var lines = data.split('\n');
 				
+				var lines = data.split('\n');
+				var i = 0;
 				$.each(lines, function(lineNo, line) {
+					line = trimQuote(line);
 					var items = line.split(',');
 					if (lineNo == 0) {
 						hMap = decodeHeaders(items);
-					} else {
+						pln("header decoded");
+					} else {  // TODO: we assume no empty lines
 						addToMap(map, getGCtype(items), getTimestamp(items),
 								getPauseTime(items));
 						addToMap(mapOldOccStart,getGCtype(items), getTimestamp(items),getOldGenOccBefore(items));
@@ -379,12 +377,13 @@ $(document).ready(
 						addToMap(mapAlloc,getGCtype(items), getTimestamp(items),getAlloc(items));
 						addToMap(mapPromo,getGCtype(items), getTimestamp(items),getPromo(items));
 						addToMap(mapLive,getGCtype(items), getTimestamp(items),getLive(items));
+						i++;
 					}
 				});
 
 				pln("add series : " + Object.keys(map).length);
 				hideLoadingCharts(charts);
-				pln("hello5");
+				pln("hello5, lines read =" + i);
 				addSeries(overviewChart,map);
 				addSeries(oldGenChart,mapOldOccStart);
 				addSeries(youngGenChart,mapYoungOccStart);
