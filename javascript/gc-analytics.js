@@ -1,12 +1,13 @@
 //ref: http://www.script-tutorials.com/highcharts-deeper-practice-for-real-statistics/
 
-
 $(document).ready(
 		function() {
 
 			function pln(str) {
 				console.log(str);
 			}
+			
+			pln("start");
 
 			function addToMap(map, type, x, y) {
 				if (map[type] == undefined) {
@@ -65,6 +66,8 @@ $(document).ready(
 					chart.addSeries(map[event], false);
 				}
 			}
+			
+			pln("creating charts");
 			
 			var overviewChart = new Highcharts.Chart( {
 				chart : {
@@ -141,6 +144,7 @@ $(document).ready(
 	        
 			});
 			
+			
 			var youngGenChart = new Highcharts.Chart( {
 				chart : {
 					renderTo : 'container3',
@@ -159,21 +163,7 @@ $(document).ready(
 
 			});
 			
-			var survivorChart = new Highcharts.Chart( {
-				chart : {
-					renderTo : 'container4',
-					type : "scatter",
-					zoomType: 'x'
-				},
-				title: {
-		            text: 'Survivor Occ Before'
-		        },
-		        yAxis: {
-		            title: {
-		                text: 'OccupationSize [Mb]'
-		            }
-		        }
-			});
+			
 			
 			var liveChart = new Highcharts.Chart( {
 				chart : {
@@ -192,6 +182,7 @@ $(document).ready(
 		        
 					
 			});
+			
 			
 			var allocChart = new Highcharts.Chart( {
 				chart : {
@@ -225,6 +216,7 @@ $(document).ready(
 		        }
 			});
 			
+			
 			var occOverviewChart = new Highcharts.Chart( {
 				chart : {
 					renderTo : 'container8',
@@ -237,6 +229,22 @@ $(document).ready(
 		        yAxis: {
 		            title: {
 		                text: 'Occupation [Mb]'
+		            }
+		        }
+			});
+			
+			var survivorChart = new Highcharts.Chart( {
+				chart : {
+					renderTo : 'container4',
+					type : "scatter",
+					zoomType: 'x'
+				},
+				title: {
+		            text: 'Survivor Occ Before'
+		        },
+		        yAxis: {
+		            title: {
+		                text: 'OccupationSize [Mb]'
 		            }
 		        }
 			});
@@ -291,7 +299,6 @@ $(document).ready(
 				return parseFloat(items[idx]);
 			}
 			
-			
 			function getGCtype(items) {
 				idx = hMap["gc.type"];
 				return items[idx];
@@ -301,9 +308,6 @@ $(document).ready(
 				idx = hMap["pause.time"];
 				return parseFloat(items[idx]);
 			}
-			
-
-			pln("hello4");
 			
 
 			$.get('input/table.main.txt', function(data) {
@@ -359,7 +363,7 @@ $(document).ready(
 				var mapSurvivor = {};
 				
 				initCharts(charts);
-				
+				pln("reading"); 
 				var lines = data.split('\n');
 				var i = 0;
 				$.each(lines, function(lineNo, line) {
@@ -369,11 +373,10 @@ $(document).ready(
 						hMap = decodeHeaders(items);
 						pln("header decoded");
 					} else {  // TODO: we assume no empty lines
-						addToMap(map, getGCtype(items), getTimestamp(items),
-								getPauseTime(items));
+						addToMap(map, getGCtype(items), getTimestamp(items),getPauseTime(items));
 						addToMap(mapOldOccStart,getGCtype(items), getTimestamp(items),getOldGenOccBefore(items));
 						addToMap(mapYoungOccStart,getGCtype(items), getTimestamp(items),getYoungGenOccBefore(items));
-						addToMap(survivorChart,getGCtype(items), getTimestamp(items),getSurvivorBefore(items));
+						addToMap(mapSurvivor,getGCtype(items), getTimestamp(items),getSurvivorBefore(items));
 						addToMap(mapAlloc,getGCtype(items), getTimestamp(items),getAlloc(items));
 						addToMap(mapPromo,getGCtype(items), getTimestamp(items),getPromo(items));
 						addToMap(mapLive,getGCtype(items), getTimestamp(items),getLive(items));
@@ -387,7 +390,7 @@ $(document).ready(
 				addSeries(overviewChart,map);
 				addSeries(oldGenChart,mapOldOccStart);
 				addSeries(youngGenChart,mapYoungOccStart);
-				//addSeries(survivorChart,survivorChart);
+				addSeries(survivorChart,mapSurvivor);
 				addSeries(allocChart,mapAlloc);
 				addSeries(promoChart,mapPromo);
 				addSeries(liveChart,mapLive);
