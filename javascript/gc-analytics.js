@@ -325,7 +325,7 @@ $(document).ready(
 			
 
 			$.get('input/table.main.txt', function(data) {
-				var mytable = "<table cellpadding=\"0\" cellspacing=\"0\"><tbody><tr>";
+				var mytable = "<table cellpadding=\"2\" cellspacing=\"2\"><tbody><tr>";
 				var lines = data.split('\n');
 				
 				mytable += "<td><b>Statistic</b></td>" +  "<td><b> Value</b></td></tr></tr>";
@@ -333,7 +333,8 @@ $(document).ready(
 					var items = line.split(',');
 					if (lineNo == 0) {
 					} else {
-						mytable += "<td>" + trimQuote(items[1]) + "</td>" +  "<td>" + trimQuote(items[2]) + "</td>";
+						mytable += "<td>" + trimQuote(items[1]) + "</td>" +
+									"<td>" + trimQuote(items[2]) + " " + trimQuote(items[3]) + "</td>";
 						mytable += "</tr><tr>";
 					}
 				});
