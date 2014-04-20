@@ -1,3 +1,6 @@
 "","GCType","Cnt","Time [s]","Avg [s]","Max [s]"
-"row","ParOld-minor","515","116.445","0.226","0.876"
-"row","ParOld-full","30","47.201","1.573","2.086"
+"row","g1-young","470","81.285","0.173","0.315"
+"row","g1full","5","136","27.2","28"
+"row","g1-young_to-spaceexhausted","9","30.289","3.365","7.435"
+"row","g1-young_initial-mark_to-spaceexhausted","3","6.985","2.328","5.56"
+"row","g1-young_initial-mark","2","0.381","0.19","0.193"
