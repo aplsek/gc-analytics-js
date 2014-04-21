@@ -3,6 +3,16 @@
 $(document).ready(
 		function() {
 
+			//test input 
+			// G1
+			var gcStatsFile = "input/data_csv2.txt";
+			var mainTableFile = "input/table.main.txt";
+			var tableByGCtype = "input/table-gctype.txt";
+			//parOld:
+			var gcStatsFile = "input/parOld/gc.stats.txt";
+			var mainTableFile = "input/parOld/table.out.txt";
+			var tableByGCtype = "input/parOld/table-gctype.out.txt";
+			
 			function pln(str) {
 				console.log(str);
 			}
@@ -10,6 +20,10 @@ $(document).ready(
 			pln("start");
 
 			function addToMap(map, type, x, y) {
+				pln("add: " + y);
+				if (isNaN(y) ) {
+					return;
+				}
 				if (map[type] == undefined) {
 					var arr0 = [];
 					var gcevent = {
@@ -68,7 +82,7 @@ $(document).ready(
 			}
 			
 			pln("creating charts");
-			
+
 			var overviewChart = new Highcharts.Chart( {
 				chart : {
 					renderTo : 'container',
@@ -310,7 +324,7 @@ $(document).ready(
 			}
 			
 
-			$.get('input/table.main.txt', function(data) {
+			$.get(mainTableFile, function(data) {
 				var mytable = "<table cellpadding=\"2\" cellspacing=\"2\"><tbody><tr>";
 				var lines = data.split('\n');
 				
@@ -329,7 +343,7 @@ $(document).ready(
 				$('#summary-table').html(mytable);
 			});
 			
-			$.get('input/table-gctype.txt', function(data) {
+			$.get(tableByGCtype, function(data) {
 				var mytable = "<table cellpadding=\"2\" cellspacing=\"2\"><tbody><tr>";
 				var lines = data.split('\n');
 				
@@ -353,7 +367,7 @@ $(document).ready(
 				$('#summary-gc-type-table').html(mytable);
 			});
 			
-			$.get('input/data_csv2.txt', function(data) {
+			$.get(gcStatsFile, function(data) {
 				var map = {};
 				var mapOldOccStart = {};
 				var mapYoungOccStart = {};
