@@ -2,31 +2,125 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!-- Bootstrap -->
+         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<title>GC Analytics</title>
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <meta name="description" content="">
+         <meta name="author" content="">
+
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+   <!-- Le styles -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
 		
 		<!-- 1. Add these JavaScript inclusions in the head of your page -->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 		
 		
-		<!-- 2. Add the JavaScript to initialize the chart on document ready -->
-		<script type="text/javascript" src="javascript/gc-analytics.js">
 		
-		</script>
 		
 	</head>
 	<body>
-		<h1>GC Analysis</h1>
-		<!-- 3. Add the container -->
-		<div id="summary-table" style="width: 800px; margin: 0 auto"></div>
-		<div id="summary-gc-type-table" style="width: 800px; margin: 0 auto"></div>
+	   
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Project name</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link">Username</a>
+            </p>
+            <ul class="nav">
+              <li class="active"><a href="#">GC Analytics</a></li>
+               <li><a href="#newExperiment"><b><i class="icon-plus"></i> New Experiment</b></a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Highlights</li>
+              <li class="active"><a href="#">Summary Table</a></li>
+              <li><a href="#">GC Events</a></li>
+              <li><a href="#">Pause Times</a></li>
+              <li><a href="#">GC Histo</a></li>
+              <li class="nav-header">Grow Rates</li>
+              <li><a href="#">Allocation Rate</a></li>
+              <li><a href="#">Live Size</a></li>
+              <li><a href="#">Promotion Rate</a></li>
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span10">
+          <div class="row-fluid">
+    
+    
+    <div class="container">
+
+     <!-- 3. Add the container -->
+       <div class="span5">
+        <h6>Summary</h6>
+        <div id="summary-table" ></div>
+       </div><!--/.well -->
+       
+         <div class="span5">
+              <h6>Summary by GC Type</h6>
+             <div id="summary-gc-type-table"></div>
+          </div><!--/.well -->
         
-		
-		
-		<div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
-		
-		<div id="container2" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        <div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        
+        <div id="container2" style="width: 800px; height: 400px; margin: 0 auto"></div>
         <div id="container3" style="width: 800px; height: 400px; margin: 0 auto"></div>
         <div id="container4" style="width: 800px; height: 400px; margin: 0 auto"></div>
         <div id="container5" style="width: 800px; height: 400px; margin: 0 auto"></div>
@@ -34,8 +128,36 @@
         <div id="container7" style="width: 800px; height: 400px; margin: 0 auto"></div>
         <div id="container8" style="width: 800px; height: 400px; margin: 0 auto"></div>
         
-            
+                  </div><!--/.well -->
+        </div><!--/span-->
+     
+    </div> <!-- /container -->
+	   
 		
-		<div id="output"></div>		
+		
+		
+		
+        
+        
+         <hr>
+    <!-- <footer>
+        <p>&copy; Company 2013</p>
+      </footer> -->  
+      
+   <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; Company 2013</p>
+      </div>
+    </div>
+
+    </div><!--/.fluid-container-->    
+		 <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- 2. Add the JavaScript to initialize the chart on document ready -->
+        <script type="text/javascript" src="javascript/gc-analytics.js"></script>
+         <script src="http://code.jquery.com/jquery.js"></script>
+         <script src="js/bootstrap.min.js"></script>
+    	
 	</body>
 </html>
