@@ -20,7 +20,6 @@ $(document).ready(
 			pln("start");
 
 			function addToMap(map, type, x, y) {
-				pln("add: " + y);
 				if (isNaN(y) ) {
 					return;
 				}
@@ -51,8 +50,6 @@ $(document).ready(
 				});
 				return hMap;
 			}
-			
-			
 			
 			function initCharts(charts) {
 				for (var i = 0; i < charts.length; i++) {
@@ -130,6 +127,25 @@ $(document).ready(
 	                }
 	            }
 	            
+			});
+			
+			var heapAfterChart = new Highcharts.Chart( {
+				chart : {
+					renderTo : 'container-heap-after',
+					type : "scatter",
+					zoomType: 'x'
+				},
+				title: {
+		            text: 'Heap Occupation After GC'
+		        },
+		        yAxis: {
+		            title: {
+		                text: 'OccupationSize [Mb]'
+		            }
+		        },
+		        tooltip: {
+	                valueSuffix: 'Mb'
+	            }
 			});
 			
 			var oldGenChart = new Highcharts.Chart( {
@@ -276,7 +292,7 @@ $(document).ready(
 			
 			var hMap = {};
 			var charts = [];
-			charts.push(overviewChart,oldGenChart,youngGenChart,survivorChart,liveChart,allocChart,promoChart,occOverviewChart);
+			charts.push(overviewChart,heapAfterChart,oldGenChart,youngGenChart,survivorChart,liveChart,allocChart,promoChart,occOverviewChart);
 			// 
 			function getTimestamp(items) {
 				idx = hMap["timestamp"];
@@ -316,6 +332,13 @@ $(document).ready(
 			function getGCtype(items) {
 				idx = hMap["gc.type"];
 				return items[idx];
+			}
+			
+			function getHeapAfter(items) {
+				
+				idx = hMap["heap.occ.end"];
+				//pln("after =" + items[idx]);
+				return parseFloat(items[idx]);
 			}
 			
 			function getPauseTime(items) {
@@ -375,6 +398,7 @@ $(document).ready(
 				var mapPromo = {};
 				var mapLive = {};
 				var mapSurvivor = {};
+				var mapHeapAfter = {};
 				
 				initCharts(charts);
 				pln("reading"); 
@@ -388,6 +412,7 @@ $(document).ready(
 						pln("header decoded");
 					} else {  // TODO: we assume no empty lines
 						addToMap(map, getGCtype(items), getTimestamp(items),getPauseTime(items));
+						addToMap(mapHeapAfter,getGCtype(items), getTimestamp(items),getHeapAfter(items));
 						addToMap(mapOldOccStart,getGCtype(items), getTimestamp(items),getOldGenOccBefore(items));
 						addToMap(mapYoungOccStart,getGCtype(items), getTimestamp(items),getYoungGenOccBefore(items));
 						addToMap(mapSurvivor,getGCtype(items), getTimestamp(items),getSurvivorBefore(items));
@@ -402,6 +427,7 @@ $(document).ready(
 				hideLoadingCharts(charts);
 				pln("hello5, lines read =" + i);
 				addSeries(overviewChart,map);
+				addSeries(heapAfterChart, mapHeapAfter);
 				addSeries(oldGenChart,mapOldOccStart);
 				addSeries(youngGenChart,mapYoungOccStart);
 				addSeries(survivorChart,mapSurvivor);

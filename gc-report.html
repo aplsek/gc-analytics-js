@@ -14,7 +14,7 @@
     <meta name="author" content="">
 
    <!-- Le styles -->
-    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+  <!--  <link href="css/bootstrap.css" rel="stylesheet"> --> 
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -33,7 +33,7 @@
         }
       }
     </style>
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -52,7 +52,7 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 		
-		
+		<!--  TODO: http://startbootstrap.com/sb-admin  -->
 		
 		
 	</head>
@@ -74,6 +74,7 @@
             <ul class="nav">
               <li class="active"><a href="#">GC Analytics</a></li>
                <li><a href="#newExperiment"><b><i class="icon-plus"></i> New Experiment</b></a></li>
+               
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -83,17 +84,17 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span2">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
+          <div class="well sidebar-nav bs-docs-sidebar">
+            <ul class="nav nav-list bs-docs-sidenav">
               <li class="nav-header">Highlights</li>
               <li class="active"><a href="#">Summary Table</a></li>
-              <li><a href="#">GC Events</a></li>
-              <li><a href="#">Pause Times</a></li>
-              <li><a href="#">GC Histo</a></li>
+              <li><a href="#pauseTimes">Pause Times</a></li>
+                <li><a href="#pauseTimes">Pause Histo</a></li>
+              <li><a href="#oldBefore">OldGen Before</a></li>
               <li class="nav-header">Grow Rates</li>
-              <li><a href="#">Allocation Rate</a></li>
-              <li><a href="#">Live Size</a></li>
-              <li><a href="#">Promotion Rate</a></li>
+              <li><a href="#allocRate">Allocation Rate</a></li>
+              <li><a href="#liveSize">Live Size</a></li>
+              <li><a href="#promoRate">Promotion Rate</a></li>
               <li class="nav-header">Sidebar</li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
@@ -118,9 +119,26 @@
              <div id="summary-gc-type-table"></div>
           </div><!--/.well -->
         <div class="span10">
-        <div id="container" style="width: 800px; height: 480px; margin: 0 auto"></div>
+       
+        <section id="pauseTimes">
+            <div id="container" style="width: 800px; height: 480px; margin: 0 auto"></div>
+        </section>
+        
+        
+        <section id="heapAfter">
+            <h6>Heap Usage After GC</h6>
+            <div id="container-heap-after" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        </section>
+        <section id="pauseHisto">
+             <h6>Pause Histogram : TODO</h6>
+            <div id="container-histo" style="width: 800px; height: 20px; margin: 0 auto"></div>
+        </section>
+         <section id="oldBefore">
         <div id="container2" style="width: 800px; height: 400px; margin: 0 auto"></div>
+           </section>
+         <section id="allocRate">
         <div id="container3" style="width: 800px; height: 400px; margin: 0 auto"></div>
+           </section>
         <div id="container4" style="width: 800px; height: 400px; margin: 0 auto"></div>
         <div id="container5" style="width: 800px; height: 400px; margin: 0 auto"></div>
         <div id="container6" style="width: 800px; height: 400px; margin: 0 auto"></div>
