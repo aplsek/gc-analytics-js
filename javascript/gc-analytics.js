@@ -325,7 +325,7 @@ $(document).ready(
 			
 
 			$.get(mainTableFile, function(data) {
-				var mytable = "<table cellpadding=\"2\" cellspacing=\"2\"><tbody><tr>";
+				var mytable = "<table class=\"table table-striped table-hover\" ><tbody><tr>";
 				var lines = data.split('\n');
 				
 				mytable += "<td><b>Statistic</b></td>" +  "<td><b> Value</b></td></tr></tr>";
@@ -344,7 +344,7 @@ $(document).ready(
 			});
 			
 			$.get(tableByGCtype, function(data) {
-				var mytable = "<table cellpadding=\"2\" cellspacing=\"2\"><tbody><tr>";
+				var mytable = "<table class=\"table table-striped table-hover\"><tbody><tr>";
 				var lines = data.split('\n');
 				
 				mytable += "<td><b>GCtype</b></td>" +  "<td><b>#</b></td>  " +
