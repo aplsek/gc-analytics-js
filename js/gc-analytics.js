@@ -5,13 +5,20 @@ $(document).ready(
 
 			//test input 
 			// G1
-			var gcStatsFile = "input/data_csv2.txt";
-			var mainTableFile = "input/table.main.txt";
-			var tableByGCtype = "input/table-gctype.txt";
+			var experimentsDir = "experiments";
+			//var expID = "101";
+			var expID = "102";
+			var SEP = "/";
+			var expDir = experimentsDir + SEP + expID + SEP;
+				
+			var gcStatsFile = expDir + "gc.stats.txt";
+			var mainTableFile =  expDir +"table.main.txt";
+			var tableByGCtype = expDir +"table-gctype.txt";
+			var gcLogRaw = expDir + "gc.log";
 			//parOld:
-			var gcStatsFile = "input/parOld/gc.stats.txt";
-			var mainTableFile = "input/parOld/table.out.txt";
-			var tableByGCtype = "input/parOld/table-gctype.out.txt";
+			//var gcStatsFile = "input/parOld/gc.stats.txt";
+			//var mainTableFile = "input/parOld/table.out.txt";
+			//var tableByGCtype = "input/parOld/table-gctype.out.txt";
 			
 			function pln(str) {
 				console.log(str);
