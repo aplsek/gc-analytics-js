@@ -188,7 +188,10 @@ $(document).ready(
 		            title: {
 		                text: 'OccupationSize [Mb]'
 		            }
-		        }
+		        },
+		        tooltip: {
+	                valueSuffix: 'Mb'
+	            }
 		       
 
 			});
@@ -208,7 +211,10 @@ $(document).ready(
 		            title: {
 		                text: 'OccupationSize [Mb]'
 		            }
-		        }
+		        },
+		        tooltip: {
+	                valueSuffix: 'Mb'
+	            }
 		        
 					
 			});
@@ -227,7 +233,10 @@ $(document).ready(
 		            title: {
 		                text: 'Allocated [Mb/s]'
 		            }
-		        }
+		        },
+		        tooltip: {
+	                valueSuffix: 'Mb/s'
+	            }
 			});
 			
 			var promoChart = new Highcharts.Chart( {
@@ -243,7 +252,10 @@ $(document).ready(
 		            title: {
 		                text: 'Promotion Rate [Mb/s]'
 		            }
-		        }
+		        },
+		        tooltip: {
+	                valueSuffix: 'Mb/s'
+	            }
 			});
 			
 			
@@ -260,7 +272,10 @@ $(document).ready(
 		            title: {
 		                text: 'Occupation [Mb]'
 		            }
-		        }
+		        },
+		        tooltip: {
+	                valueSuffix: 'Mb'
+	            }
 			});
 			
 			var survivorChart = new Highcharts.Chart( {
@@ -390,6 +405,13 @@ $(document).ready(
 				$('#summary-gc-type-table').html(mytable);
 			});
 			
+			function isFullGC(gcevent) {
+				if ((gcevent.indexOf("full") !== -1))
+					return true;
+				else
+					return false;
+			}
+			
 			$.get(gcStatsFile, function(data) {
 				var map = {};
 				var mapOldOccStart = {};
@@ -418,7 +440,9 @@ $(document).ready(
 						addToMap(mapSurvivor,getGCtype(items), getTimestamp(items),getSurvivorBefore(items));
 						addToMap(mapAlloc,getGCtype(items), getTimestamp(items),getAlloc(items));
 						addToMap(mapPromo,getGCtype(items), getTimestamp(items),getPromo(items));
-						addToMap(mapLive,getGCtype(items), getTimestamp(items),getLive(items));
+						
+						if (isFullGC(getGCtype(items)))
+							addToMap(mapLive,getGCtype(items), getTimestamp(items),getLive(items));
 						i++;
 					}
 				});
