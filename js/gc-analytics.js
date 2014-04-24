@@ -82,7 +82,7 @@ $(document).ready(
 
 			var overviewChart = new Highcharts.Chart( {
 				chart : {
-					renderTo : 'container',
+					renderTo : 'container-pauseTimes',
 					type : "scatter",
 					zoomType: 'x'
 				},
@@ -150,7 +150,7 @@ $(document).ready(
 			
 			var oldGenChart = new Highcharts.Chart( {
 				chart : {
-					renderTo : 'container2',
+					renderTo : 'container-oldGen',
 					type : "scatter",
 					zoomType: 'x'
 				},
@@ -177,7 +177,7 @@ $(document).ready(
 			
 			var youngGenChart = new Highcharts.Chart( {
 				chart : {
-					renderTo : 'container3',
+					renderTo : 'container-young-gen-before',
 					type : "scatter",
 					zoomType: 'x'
 				},
@@ -200,8 +200,7 @@ $(document).ready(
 			
 			var liveChart = new Highcharts.Chart( {
 				chart : {
-					renderTo : 'container5',
-					type : "scatter",
+					renderTo : 'container-liveSize',
 					zoomType: 'x'
 				},
 				title : {
@@ -222,7 +221,7 @@ $(document).ready(
 			
 			var allocChart = new Highcharts.Chart( {
 				chart : {
-					renderTo : 'container6',
+					renderTo : 'container-aloccation',
 					type : "scatter",
 					zoomType: 'x'
 				},
@@ -241,7 +240,7 @@ $(document).ready(
 			
 			var promoChart = new Highcharts.Chart( {
 				chart : {
-					renderTo : 'container7',
+					renderTo : 'container-promo',
 					type : "scatter",
 					zoomType: 'x'
 				},
@@ -261,12 +260,12 @@ $(document).ready(
 			
 			var occOverviewChart = new Highcharts.Chart( {
 				chart : {
-					renderTo : 'container8',
+					renderTo : 'container-occupation',
 					type : "scatter",
 					zoomType: 'x'
 				},
 				title : {
-		            text: "Occuptation Overview"
+		            text: "Occupation Overview"
 		        },
 		        yAxis: {
 		            title: {
@@ -277,10 +276,58 @@ $(document).ready(
 	                valueSuffix: 'Mb'
 	            }
 			});
+			/*
+			var gcPie = new  new Highcharts.Chart( {
+				chart: {
+					renderTo : 'container-pie',
+				plotBackgroundColor: null,
+	            	plotBorderWidth: null,
+	            	plotShadow: false
+	        	},
+	        	title: {
+	        		text: 'GC Events Distribution'
+	        	},
+	        	tooltip: {
+	        		pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	        	},
+	        	plotOptions: {
+		            pie: {
+		                allowPointSelect: true,
+		                cursor: 'pointer',
+		                dataLabels: {
+		                    enabled: true,
+		                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+		                    style: {
+		                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+		                    }
+		                }
+		            }
+		        },
+		        series: [{
+		            type: 'pie',
+		            name: 'Browser share',
+		            data: [
+		                ['Firefox',   45.0],
+		                ['IE',       26.8],
+		                {
+		                    name: 'Chrome',
+		                    y: 12.8,
+		                    sliced: true,
+		                    selected: true
+		                },
+		                ['Safari',    8.5],
+		                ['Opera',     6.2],
+		                ['Others',   0.7]
+		            ]
+		        }]
+			});*/
+			
+			
+		       
 			
 			var survivorChart = new Highcharts.Chart( {
 				chart : {
-					renderTo : 'container4',
+					renderTo : 'container-survivor',
 					type : "scatter",
 					zoomType: 'x'
 				},

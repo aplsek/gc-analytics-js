@@ -89,19 +89,28 @@
               <li class="nav-header">Highlights</li>
               <li class="active"><a href="#">Summary Table</a></li>
               <li class="nav-header">Pause Times</li>
-              <li><a href="#pauseTimes">Pause Times</a></li>
+              <li><a href="#container-pauseTimes">Pause Times</a></li>
               <li><a href="#pauseTimes">Pause Histo</a></li>
               <li class="nav-header">Heap Usage</li>
-              <li><a href="#pauseTimes">Heap Usage After</a></li>
-              <li><a href="#oldBefore">OldGen Before</a></li>
+              <li><a href="#container-heap-after">Heap Usage After</a></li>
+              <li><a href="#container-oldGen">OldGen Before</a></li>
+               <li><a href="#container-young-gen-before">YoungGen Before</a></li>
+             
+              
+               <li><a href="#container-survivor">Survivor After</a></li>
+              
+              
               <li class="nav-header">Grow Rates</li>
-              <li><a href="#allocRate">Allocation Rate</a></li>
-              <li><a href="#liveSize">Live Size</a></li>
+              <li><a href="#container-aloccation">Allocation Rate</a></li>
+              <li><a href="#container-liveSize">Live Size</a></li>
               <li><a href="#promoRate">Promotion Rate</a></li>
               <li class="nav-header">Heap Sizes</li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
+               <li class="nav-header">Log Files</li>
+                 <li><a href="#">GC Log</a></li>
+                 <li><a href="#">JVM Log</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -117,6 +126,7 @@
         <div id="summary-table" ></div>
        </div><!--/.well -->
        
+       
          <div class="span5">
               <h6>Summary by GC Type</h6>
              <div id="summary-gc-type-table"></div>
@@ -124,7 +134,7 @@
         <div class="span10">
        
         <section id="pauseTimes">
-            <div id="container" style="width: 800px; height: 480px; margin: 0 auto"></div>
+            <div id="container-pauseTimes" style="width: 800px; height: 480px; margin: 0 auto"></div>
         </section>
         
         
@@ -137,24 +147,34 @@
             <div id="container-histo" style="width: 800px; height: 20px; margin: 0 auto"></div>
         </section>
          <section id="oldBefore">
-        <div id="container2" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        <div id="container-oldGen" style="width: 800px; height: 400px; margin: 0 auto"></div>
            </section>
-         <section id="allocRate">
-        <div id="container3" style="width: 800px; height: 400px; margin: 0 auto"></div>
+         <section id="">
+        <div id="container-young-gen-before" style="width: 800px; height: 400px; margin: 0 auto"></div>
            </section>
-        <div id="container4" style="width: 800px; height: 400px; margin: 0 auto"></div>
-        <div id="container5" style="width: 800px; height: 400px; margin: 0 auto"></div>
-        <div id="container6" style="width: 800px; height: 400px; margin: 0 auto"></div>
-        <div id="container7" style="width: 800px; height: 400px; margin: 0 auto"></div>
-        <div id="container8" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        <div id="container-survivor" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        <div id="container-liveSize" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        <div id="container-aloccation" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        <div id="container-promo" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        <div id="container-occupation" style="width: 800px; height: 400px; margin: 0 auto"></div>
          </div><!--/.well -->
                   </div><!--/.well -->
         </div><!--/span-->
      
     </div> <!-- /container -->
 	   
-		
-		
+		<h2>TODO:</h2>
+		<ul >
+              
+              <li>summary - average interval</li>
+            <li>tenuring threshold</li>
+            <li>resident set size?</li>
+              <li>heap Before GC</li>
+               <li>aggregate allocation</li>
+                <li>Heap Recovered</li>
+                 <li>Heap Recovered</li>
+                  <li>GC log full - in raw data</li>
+            </ul>
 		
 		
         
