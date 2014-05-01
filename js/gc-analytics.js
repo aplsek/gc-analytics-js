@@ -1,13 +1,40 @@
 //ref: http://www.script-tutorials.com/highcharts-deeper-practice-for-real-statistics/
+// adding the "expID=" parameter into the url, use e.g. "http:.../gc-report.html?expID=102"
+
 
 $(document).ready(
+		
+		
+		
 		function() {
 
+			function getQueryParams(qs) {
+			    qs = qs.split("+").join(" ");
+
+			    var params = {}, tokens,
+			        re = /[?&]?([^=]+)=([^&]*)/g;
+
+			    while (tokens = re.exec(qs)) {
+			        params[decodeURIComponent(tokens[1])]
+			            = decodeURIComponent(tokens[2]);
+			    }
+
+			    return params;
+			}
+
+			var query = getQueryParams(document.location.search);
+			//alert(query.idURL);	
+			
+			pln("url decode:" + query.idURL);
+			
 			//test input 
 			// G1
 			var experimentsDir = "experiments";
 			//var expID = "101";
-			var expID = "102";
+			var expID =   query.expID;
+			
+			
+			//"102";
 			var SEP = "/";
 			var expDir = experimentsDir + SEP + expID + SEP;
 				
@@ -517,6 +544,18 @@ $(document).ready(
 				pln("hello6");
 				redrawCharts(charts);
 				pln("hello7");
+			});
+			
+			$(document).ready(function() {
+			    $("#lesen").click(function() {
+			        $.ajax({
+			            url : gcLogRaw,
+			            dataType: "text",
+			            success : function (data) {
+			                $(".text").html(data);
+			            }
+			        });
+			    });
 			});
 			
 		});
