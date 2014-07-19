@@ -29,6 +29,11 @@ cp $FILE $OUTPUT/gc.log
 # use gc-parser
 java -jar $GC_PARSER $FILE $GCPARSER_OUT
 
+cat $GCPARSER_OUT | grep -v "^$" > $GCPARSER_OUT.tmp
+rm $GCPARSER_OUT
+cp $GCPARSER_OUT.tmp $GCPARSER_OUT
+rm $GCPARSER_OUT.tmp
+
 
 
 # modify html
@@ -43,8 +48,9 @@ rm $HTML.tmp
 
 
 
+
 # Run R-Analytics
-cd $R_ANALYTICS && Rscript $CUR_DIR/$GCPARSER_OUT
+cd $R_ANALYTICS && Rscript R/main.R $CUR_DIR/$GCPARSER_OUT $CUR_DIR/$GCPARSER_OUT $RUNID
 cd $CUR_DIR
 
 cp $R_ANALYTICS/table.out.txt $OUTPUT/table.main.txt
