@@ -442,6 +442,10 @@ $(document).ready(
 				return parseFloat(items[idx]);
 			}
 			
+			function isEmpty(str) {
+			    return (!str || 0 === str.length);
+			}
+			
 
 			$.get(mainTableFile, function(data) {
 				var mytable = "<table class=\"table table-striped table-hover\" ><tbody><tr>";
@@ -450,7 +454,8 @@ $(document).ready(
 				mytable += "<td><b>Statistic</b></td>" +  "<td><b> Value</b></td></tr></tr>";
 				$.each(lines, function(lineNo, line) {
 					var items = line.split(',');
-					if (lineNo == 0) {
+					if (lineNo == 0 || isEmpty(line)) {
+						return; // stop processing this iteration
 					} else {
 						mytable += "<td>" + trimQuote(items[1]) + "</td>" +
 									"<td>" + trimQuote(items[2]) + " " + trimQuote(items[3]) + "</td>";
@@ -472,7 +477,8 @@ $(document).ready(
 				$.each(lines, function(lineNo, line) {
 					line = trimQuote(line);
 					var items = line.split(',');
-					if (lineNo == 0) {
+					if (lineNo == 0 || isEmpty(line)) {
+						return; // stop processing this iteration
 					} else {
 						pln("item 2 :" +items[2]);
 						mytable += "<td>" + trimQuote(items[1]) + "</td>" +  "<td>" + trimQuote(items[2])+ "</td>";
@@ -513,6 +519,8 @@ $(document).ready(
 					if (lineNo == 0) {
 						hMap = decodeHeaders(items);
 						pln("header decoded");
+					} else if (isEmpty(line)) {
+						return;
 					} else {  // TODO: we assume no empty lines
 						addToMap(map, getGCtype(items), getTimestamp(items),getPauseTime(items));
 						addToMap(mapHeapAfter,getGCtype(items), getTimestamp(items),getHeapAfter(items));
