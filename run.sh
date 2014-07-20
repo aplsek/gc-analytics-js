@@ -38,7 +38,7 @@ rm $GCPARSER_OUT.tmp
 
 # modify html
 C1="<td><a href=\"gc-report.html?expID=$RUNID\">$RUNID</a></td>"
-C2="<td>ParOld</td><td>-Xmn=10g</td><td>Hostname 2</td><td>ParlOld experiment test</td>"
+C2="<td>ParOld</td><td>-Xmn=10g</td><td>Hostname 2</td><td>ParlOld experiment test, $FILE</td>"
 REP="<tr>$C1$C2</tr>"
 sed "s|<\!-- START -->|<\!-- START -->   $REP|g" $HTML > $HTML.tmp
 cat $HTML.tmp > $HTML
