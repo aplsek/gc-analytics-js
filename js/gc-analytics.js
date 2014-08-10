@@ -468,19 +468,21 @@ $(document).ready(
 			});
 			
 			$.get(tableByGCtype, function(data) {
-				var mytable = "<table class=\"table table-striped table-hover\"><tbody><tr>";
+				
+				var mytable = "<table class=\"table table-striped table-hover\">";
 				var lines = data.split('\n');
 				
-				mytable += "<td><b>GCtype</b></td>" +  "<td><b>#</b></td>  " +
-						"				<td><b> Time [s]</b></td> <td><b> Avg [s]</b></td>" +
-						"<td><b>Max [s]</b></td></tr></tr> </tr>" +  + "</tr>";
+				mytable += "<thead><tr><th>GCtype</th>" +  "<th>#</th>  " +
+						"				<th> Time [s]</th> <th> Avg [s]</th>" +
+						"<th>Max [s]</th>" +  + "</tr></thead><tbody><tr>";
 				$.each(lines, function(lineNo, line) {
 					line = trimQuote(line);
 					var items = line.split(',');
 					if (lineNo == 0 || isEmpty(line)) {
 						return; // stop processing this iteration
 					} else {
-						pln("item 2 :" +items[2]);
+						//pln("item 2 :" +items[2]);
+						mytable += "<tr>";
 						mytable += "<td>" + trimQuote(items[1]) + "</td>" +  "<td>" + trimQuote(items[2])+ "</td>";
 						mytable += "<td>" + trimQuote(items[3]) + "</td>" +  "<td>" + trimQuote(items[4]) + "</td>";
 					    mytable += "<td>" + trimQuote(items[5]) + "</td>";
