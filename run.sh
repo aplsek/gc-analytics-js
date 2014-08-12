@@ -20,7 +20,7 @@ KEY="<!-- START -->"
 CUR_DIR=`pwd`
 
 
-mkdir $EXPERIMENT/$RUNID
+mkdir -p $EXPERIMENT/$RUNID
 cp $FILE $OUTPUT/gc.log
 
 
