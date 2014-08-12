@@ -10,7 +10,7 @@ GC_PARSER=$LIB/gc-parser-0.1.0-standalone.jar
 
 OUTPUT=$EXPERIMENT/$RUNID
 
-R_ANALYTICS=/Users/mzucka/ales/workspace-clojure/R-analytics
+R_ANALYTICS=./R-analytics
 GCPARSER_OUT=$OUTPUT/gc.stats-parser.txt
 
 HTML="gc-list.html"
