@@ -1,13 +1,11 @@
 
-
+mkdir -p lib
 PARSER_DIR=./gc-parser
 
-PWD=`pwd`
+PP=`pwd`
 
 cd $PARSER_DIR && ./build.sh
-cd $PWD
-
-cp $PARSER_DIR/target/jar lib/
+cd $PP && cp $PARSER_DIR/target/gc-parser* lib/
 
 
 
