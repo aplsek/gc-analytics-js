@@ -1,3 +1,16 @@
+#!/bin/sh
+
+usage ()
+{
+  echo 'Usage : run.sh <RUNID> <GC-log>'
+  exit
+}
+
+if (( $# != 2)); 
+then
+  usage
+fi
+
 
 EXPERIMENT=experiments/
 RUNID=$1
@@ -6,7 +19,10 @@ FILE=$2
 INPUT=./input/
 LIB=./lib/
 
+#GC_PARSER=$LIB/gc-parser-0.1.0-standalone.jar
 GC_PARSER=$LIB/gc-parser-0.1.0-standalone.jar
+
+
 
 OUTPUT=$EXPERIMENT/$RUNID
 
@@ -27,6 +43,7 @@ cp $FILE $OUTPUT/gc.log
 
 
 # use gc-parser
+echo "Parsing the GC log."
 java -jar $GC_PARSER $FILE $GCPARSER_OUT
 
 cat $GCPARSER_OUT | grep -v "^$" > $GCPARSER_OUT.tmp
@@ -50,9 +67,14 @@ rm $HTML.tmp
 
 
 # Run R-Analytics
+echo "Running R-Analytics"
 cd $R_ANALYTICS && Rscript R/main.R $CUR_DIR/$GCPARSER_OUT $CUR_DIR/$GCPARSER_OUT $RUNID
 cd $CUR_DIR
 
 cp $R_ANALYTICS/table.out.txt $OUTPUT/table.main.txt
 cp $R_ANALYTICS/table-gctype.out.txt $OUTPUT/table-gctype.txt
 cp $R_ANALYTICS/gc.stats.txt $OUTPUT/
+
+
+
+echo "Done"
