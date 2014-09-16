@@ -1,3 +1,17 @@
+#!/bin/sh
+
+usage ()
+{
+  echo 'Usage : run.sh <RUNID> <GC-log>'
+  exit
+}
+
+if (( $# != 2));
+then
+  usage
+fi
+
+
 
 EXPERIMENT=experiments/
 RUNID=$1
