@@ -6,19 +6,12 @@ usage ()
   exit
 }
 
-<<<<<<< HEAD
 if (( $# != 2)); 
-=======
-if (( $# != 2));
->>>>>>> a8f1b75d9317a49c6d4fc0785b29286108760654
 then
   usage
 fi
 
-<<<<<<< HEAD
-=======
 
->>>>>>> a8f1b75d9317a49c6d4fc0785b29286108760654
 
 EXPERIMENT=experiments/
 RUNID=$1
