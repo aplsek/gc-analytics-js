@@ -21,8 +21,8 @@ INPUT=./input/
 LIB=./lib/
 
 #GC_PARSER=$LIB/gc-parser-0.1.0-standalone.jar
-GC_PARSER=$LIB/gc-parser-0.1.0-standalone.jar
-
+GC_PARSER=$LIB/gc-parser-0.1.0.jar
+CC=$LIB/gc-parser-0.1.0.jar:$LIB/gc-parser-0.1.0-standalone.jar
 
 
 OUTPUT=$EXPERIMENT/$RUNID
@@ -45,7 +45,7 @@ cp $FILE $OUTPUT/gc.log
 
 # use gc-parser
 echo "Parsing the GC log."
-java -jar $GC_PARSER $FILE $GCPARSER_OUT
+java -classpath $CC -jar $GC_PARSER $FILE $GCPARSER_OUT
 
 cat $GCPARSER_OUT | grep -v "^$" > $GCPARSER_OUT.tmp
 rm $GCPARSER_OUT
